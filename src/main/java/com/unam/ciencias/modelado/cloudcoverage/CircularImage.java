@@ -125,10 +125,18 @@ public class CircularImage {
      */
     public int redBlueProportionPixelCount(float treshold) {
         int colorPixels = 0;
+        int r = radio*radio;
         int actualPixel;
+        int xDistance;
+        int yDistance;
+        // Loop over all the pixels in the tota limage.
         for(int i = 0; i < image.getWidth(); i++){
             for(int j = 0;  j < image.getHeight(); j++){
-                if(centerDistance(i, j) >= radio)
+                // First we check if the pixel is inside the circle.
+                xDistance = i - centerX;
+                yDistance = j - centerY;
+                if((xDistance*xDistance) + (yDistance*yDistance) >= r)
+                    // If the pixel is not inside the circle we ignore it.
                     continue;
                 actualPixel = image.getRGB(i, j);
                 if(getRedBlueProportion(actualPixel) < treshold)
