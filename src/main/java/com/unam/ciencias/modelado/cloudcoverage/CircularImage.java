@@ -129,7 +129,7 @@ public class CircularImage {
         int actualPixel;
         int xDistance;
         int yDistance;
-        // Loop over all the pixels in the tota limage.
+        // Loop over all the pixels in the total image.
         for(int i = 0; i < image.getWidth(); i++){
             for(int j = 0;  j < image.getHeight(); j++){
                 // First we check if the pixel is inside the circle.
