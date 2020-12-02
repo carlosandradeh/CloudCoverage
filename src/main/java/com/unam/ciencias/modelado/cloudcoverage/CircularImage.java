@@ -151,6 +151,6 @@ public class CircularImage {
      * The image is saved into the floder.....
      */
     public void toBlackAndWhite() {
-
+        return;
     }
 }
