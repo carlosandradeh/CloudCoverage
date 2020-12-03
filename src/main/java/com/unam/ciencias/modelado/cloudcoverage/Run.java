@@ -27,10 +27,10 @@ public class Run {
         try {
             return new CircularImage(image, radio, x, y);
         } catch (FileNotFoundException e) {
-            System.err.printf("File %s not found :( \n", image);
+            System.err.printf("File %s not found :-( \n", image);
             use();
         } catch (IOException io) {
-            System.err.printf("File %s not valid :( \n", image);
+            System.err.printf("File %s not valid :-( \n", image);
             use();
         }
         return null;
@@ -64,6 +64,6 @@ public class Run {
 
         // If we have a the flag S or s convert a copy of the image to black and white.
         if (args.length == 2)
-            inputImage.toBlackAndWhite();
+            inputImage.toBlackAndWhite();    
     }
 }
