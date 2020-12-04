@@ -1,6 +1,7 @@
 package com.unam.ciencias.modelado.cloudcoverage;
 
 import javax.imageio.ImageIO;
+import java.io.File;//
 import java.io.FileInputStream;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -25,6 +26,9 @@ public class CircularImage {
 
     // The y coordinate of the circle that contains the image of interest.
     private int centerY;
+
+    //The Matrix of Colors when the image is converted to black and white.
+    private Color[][] binarizada;
 
     /**
      * Private constructor with no arguments, so to make necessary the other
@@ -163,9 +167,59 @@ public class CircularImage {
     }
 
     /**
+     * Método para llenar la matriz de Colores Color[][] binarizada.
+     * Blanco si es Cielo
+     * Negro si es Nube
+     * Gris si está fuera del circulo 
+     * @param umbral Umbral para determinar si es nube o cielo
+     */
+    public void binarizar(float umbral) {
+        binarizada = new Color[image.getWidth()][image.getHeight()];
+        int r = radio * radio;
+        int actualPixel;
+        int xDistance;
+        int yDistance;
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                // First we check if the pixel is inside the circle.
+                xDistance = i - centerX;
+                yDistance = j - centerY;
+                if ((xDistance * xDistance) + (yDistance * yDistance) >= r) {
+                    // If the pixel is not inside the circle we color the ColorMatrix to Gray.
+                    binarizada[i][j] = Color.DARK_GRAY.darker();
+                    continue;
+                }
+
+                actualPixel = image.getRGB(i, j);
+                if (getRedBlueProportion(actualPixel) < umbral) 
+                    binarizada[i][j] = Color.WHITE;
+                else
+                    binarizada[i][j] = Color.BLACK;
+            }
+        }
+    }
+
+    /**
+     * Método para crear una imagen Bufferizada partiendo de la matriz 
+     * @return
+     */
+    public BufferedImage imprimirImagen() {
+        BufferedImage nueva = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                nueva.setRGB(i, j, binarizada[i][j].getRGB());
+            }
+        }
+        return nueva;
+    }
+
+    /**
      * Creates an image equal to this, but only using black and white colors. The
      * image is saved into the floder.....
      */
-    public void toBlackAndWhite() {
+    public void toBlackAndWhite() throws IOException {
+        binarizar(0.95f);
+        BufferedImage bw = imprimirImagen();
+        ImageIO.write(bw, "jpg", new File("salida.jpg"));
     }
 }

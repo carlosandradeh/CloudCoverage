@@ -63,7 +63,12 @@ public class Run {
         System.out.printf("The cloud Coverage index of the image %s is: %f \n", args[0], cloudCoverageIndex);
 
         // If we have a the flag S or s convert a copy of the image to black and white.
-        if (args.length == 2)
-            inputImage.toBlackAndWhite();    
+        if (args.length == 2) {
+            try {
+                inputImage.toBlackAndWhite();
+            } catch (IOException e) {
+                System.err.println("No se pudo crear la imagen");
+            }
+        } 
     }
 }
