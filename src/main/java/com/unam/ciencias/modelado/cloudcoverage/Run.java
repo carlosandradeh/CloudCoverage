@@ -10,6 +10,7 @@ public class Run {
      */
     private static void use() {
         System.err.println("Use: java -jar target/CloudCoverage.jar img.jpg S");
+        System.out.println("The input image must be size 4368px*2912px");
         System.exit(1);
     }
 
@@ -34,6 +35,20 @@ public class Run {
             use();
         }
         return null;
+    }
+
+    /**
+     * Method to create a new Black and White Image from a CircularImage
+     * @param c CircularImage
+     */
+    private void createBlackWhiteImage(CircularImage c) {
+        try {
+            c.toBlackAndWhite();
+            System.out.println("Black And White Image created successfully in this folder! :-)");
+        } catch (IOException e) {
+            System.err.println("Black and White Image creation Error :-( \n");
+            System.exit(1);
+        }
     }
 
     /**
@@ -63,12 +78,7 @@ public class Run {
         System.out.printf("The cloud Coverage index of the image %s is: %f \n", args[0], cloudCoverageIndex);
 
         // If we have a the flag S or s convert a copy of the image to black and white.
-        if (args.length == 2) {
-            try {
-                inputImage.toBlackAndWhite();
-            } catch (IOException e) {
-                System.err.println("No se pudo crear la imagen");
-            }
-        } 
+        if (args.length == 2)
+            createBlackWhiteImage(inputImage);
     }
 }
