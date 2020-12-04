@@ -36,10 +36,12 @@ above, the file 11773-seg.jpg or 11773-seg.png must be generated.
 ### To run this App:
 
 ```
+$ mvn clean
 $ mvn compile
 $ mvn install  
 $ java -jar target/CloudCoverage 11773.jpg S
 $ java -jar target/CloudCoverage 11773.jpg s
 $ java -jar target/CloudCoverage 11773.jpg 
 ```
-
+### OutFile
+The output file will be saved in this folder.
