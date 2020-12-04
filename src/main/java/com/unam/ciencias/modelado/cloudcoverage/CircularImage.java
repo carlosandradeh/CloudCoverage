@@ -169,10 +169,10 @@ public class CircularImage {
                 actualPixel = image.getRGB(i, j);
                 //If the pixel is Sky
                 if (getRedBlueProportion(actualPixel) < treshold) {
-                    binarized[i][j] = Color.WHITE;
+                    binarized[i][j] = Color.BLACK;
                     colorPixels++;
                 } else { //If the pixel is Cloud.
-                    binarized[i][j] = Color.BLACK;
+                    binarized[i][j] = Color.WHITE;
                 }             
             }
         }
