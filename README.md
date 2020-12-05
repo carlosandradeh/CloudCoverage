@@ -1,8 +1,8 @@
 Cloud Coverage.
 ====================
 ### Authors 
--Carlos Andrade Hernández
--Demian Alejandro Monterrubio Acosta
+- Carlos Andrade Hernández
+- Demian Alejandro Monterrubio Acosta
 ### Context
 There is an atmospheric registration station where photographs are taken every 15 minutes
 from the sky with a 360 degree wide angle lens. The images of the celestial vault are
