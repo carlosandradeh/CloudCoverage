@@ -55,7 +55,7 @@ public class CircularImage {
             throws IOException, FileNotFoundException {
         image = ImageIO.read(ImageIO.createImageInputStream(new FileInputStream(imageFileName)));
         // If the File is not an Image or the size is incorrect throws an IOException
-        if (image == null || image.getWidth() != 4368 || image.getHeight() != 2912)
+        if (image == null)
             throw new IOException();
         this.imageFileName = imageFileName;
         this.radio = radio;
@@ -76,12 +76,28 @@ public class CircularImage {
     public CircularImage(String imageFileName) throws IOException, FileNotFoundException {
         image = ImageIO.read(ImageIO.createImageInputStream(new FileInputStream(imageFileName)));
         // If the File is not an Image or the size is incorrect throws an IOException
-        if (image == null || image.getWidth() != 4368 || image.getHeight() != 2912)
+        if (image == null)
             throw new IOException();
         this.imageFileName = imageFileName;
         this.centerX = image.getWidth() / 2;
         this.centerY = image.getHeight() / 2;
         this.radio = (centerX < centerY) ? centerX : centerY;
+    }
+
+    /**
+     * Method to get the width of this CircleImage
+     * @return int width
+     */
+    public int getWidth() {
+        return image.getWidth();
+    }
+
+    /**
+     * Method to get the height of this CircleImage.
+     * @return int height
+     */
+    public int getHeight() {
+        return image.getHeight();
     }
 
     /**

@@ -70,6 +70,12 @@ public class Run {
 
         CircularImage inputImage = createCircularImage(args[0], 1324, 2184, 1456);
 
+        //If the size of the image is invalid
+        if (inputImage.getWidth() != 4368 || inputImage.getHeight() != 2912) {
+            System.err.printf("Invalid size Image %s \n", args[0]);
+            use();
+        }
+
         // Calculate the Cloud Coverage Index of the image.
         int circleArea = inputImage.getCircleArea();
         float cloudArea = circleArea - inputImage.redBlueProportionPixelCount(0.95f);
