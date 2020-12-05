@@ -3,6 +3,11 @@ package com.unam.ciencias.modelado.cloudcoverage;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
+/**
+ * Class to execute the program.
+ * This class is to get the input parameters, administrate exceptions and execute
+ * the needed methods.
+ */
 public class Run {
     
     /**
@@ -16,8 +21,7 @@ public class Run {
 
     /**
      * Method to create a new Instance of Circular Image. Throws File not Found
-     * Exception if the image is not found or IOException if it's an invalid input
-     * 
+     * Exception if the image is not found or IOException if it's an invalid input.
      * @param image The path of the image
      * @param radio The radio of the circle in the image.
      * @param x     The position x of the center of the image.
@@ -53,6 +57,9 @@ public class Run {
 
     /**
      * Method to run the Cloud Coverage program.
+     * Since the pictures are taken with a 360 dregree lens, the actual image
+     * is inside of a rectangle with black borders; so we create a Circular Image
+     * to manipulate the actual part that contains the sky.
      * @param args The arguments that will recive this program to work.
      */
     public void run(String[] args) {
@@ -68,7 +75,14 @@ public class Run {
             use();
         }
 
-        CircularImage inputImage = createCircularImage(args[0], 1324, 2184, 1456);
+        //The radio of the actual image of the sky.
+        int radio = 1324;
+        //The center in x coordinate of the actual image of the sky.
+        int x = 2184;
+        //The center in y coordinate of the actual image of the sky.
+        int y = 1456;
+        //Creation of a CircularImage object to manipulate correctly the images.
+        CircularImage inputImage = createCircularImage(args[0], radio, x, y);
 
         //If the size of the image is invalid
         if (inputImage.getWidth() != 4368 || inputImage.getHeight() != 2912) {
@@ -77,7 +91,7 @@ public class Run {
         }
 
         // Calculate the Cloud Coverage Index of the image.
-        int circleArea = inputImage.getCircleArea();
+        float circleArea = (float)inputImage.getCircleArea();
         float cloudArea = circleArea - inputImage.redBlueProportionPixelCount(0.95f);
         float cloudCoverageIndex = CloudCoverageIndex.getIndex(cloudArea, circleArea);
 

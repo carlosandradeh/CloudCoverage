@@ -114,24 +114,8 @@ public class CircularImage {
      * 
      * @return an estimation of the area (in pixels) inside the circle.
      */
-    public int getCircleArea() {
-        return (int) (Math.PI * radio * radio);
-    }
-
-    /**
-     * Estimates the distance between, a point with coordinates (x, y) inside the
-     * total image, and the center of the circle. The units of this distance will be
-     * pixels.
-     * 
-     * @param x the coordinate in x of the point.
-     * @param y the coordinate in y of the point.
-     * @return an estimation of the distance between a point with coordinates (x, y)
-     *         and the center of the circle.
-     */
-    private float centerDistance(int x, int y) {
-        int xDistance = Math.abs(x - centerX);
-        int yDistance = Math.abs(y - centerY);
-        return (float) Math.sqrt((xDistance * xDistance) + (yDistance * yDistance));
+    public double getCircleArea() {
+        return (Math.PI * radio * radio);
     }
 
     /**

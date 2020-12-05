@@ -1,5 +1,10 @@
 package com.unam.ciencias.modelado.cloudcoverage;
 
+/**
+ * Class to calculate the Cloud Coverage index.
+ * The cloud coverage index is defined as the proportion od the Sky
+ * covered by clouds.
+ */
 public class CloudCoverageIndex {
 
     /**
