@@ -34,6 +34,8 @@ that, before the extension, the segmentation suffix “-seg” must be added. In
 above, the file 11773-seg.jpg or 11773-seg.png must be generated.
 
 ### To run this App:
+Maven Website : https://maven.apache.org/
+You must have Maven installed : https://maven.apache.org/download.cgi
 
 ```
 $ mvn clean
